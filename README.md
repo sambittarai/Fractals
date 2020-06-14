@@ -1,3 +1,8 @@
+# Requirements
+  * Tensorflow
+  * Numpy
+
+
 # Fractals
 Implementing Mandelbrot Set using tensorflow
 
