@@ -9,15 +9,12 @@ sess = tf.InteractiveSession()
 X, Y = np.mgrid[-4:4:0.01, -4:4:0.01]
 xs = tf.constant(X.astype(np.float32))
 ys = tf.constant(Y.astype(np.float32))
-
 tf.global_variables_initializer().run()
-
 zs = tf.exp(-(xs**2 + ys**2)/2.0)
 a = zs.eval()
 plt.imshow(a)
 plt.tight_layout()
 plt.show()
-
 
 #1.2
 import tensorflow as tf
@@ -29,11 +26,7 @@ sess = tf.InteractiveSession()
 X, Y = np.mgrid[-4:4:0.01, -4:4:0.01]
 xs = tf.constant(X.astype(np.float32))
 ys = tf.constant(Y.astype(np.float32))
-
-
-
 tf.global_variables_initializer().run()
-
 zs = tf.sin(X+Y)
 a = zs.eval()
 plt.imshow(a)
@@ -46,15 +39,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sess = tf.InteractiveSession()
-
 X, Y = np.mgrid[-4:4:0.01, -4:4:0.01]
 xs = tf.constant(X.astype(np.float32))
 ys = tf.constant(Y.astype(np.float32))
-
-
-
 tf.global_variables_initializer().run()
-
 zs = tf.sin(X+Y)
 qs = tf.exp(-(xs**2 + ys**2)/2.0)
 a = zs.eval()
@@ -69,7 +57,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sess = tf.InteractiveSession()
-
 Y, X = np.mgrid[-1.3:1.3:0.003, -2:1:0.003]
 Z = X + 1j*Y
 xs = tf.constant(Z.astype(np.complex64))
@@ -137,8 +124,6 @@ plt.imshow(processFractal(ns.eval()))
 plt.tight_layout(pad=0)
 plt.show()
 
-
-
 #2.3
 import tensorflow as tf
 import numpy as np
@@ -160,8 +145,6 @@ step = tf.group( zs.assign(zs_), ns.assign_add(tf.cast(not_diverged, tf.float32)
 
 for i in range(200):
   step.run()
-  
- 
 
 fig = plt.figure(figsize=(16,10))
 
@@ -178,9 +161,7 @@ def processFractal(a):
 plt.imshow(processFractal(ns.eval()))
 plt.tight_layout(pad=0)
 plt.show()
-
 sess.close()
-
 #3
 
 import tensorflow as tf
@@ -196,16 +177,12 @@ xs = tf.constant(Z.astype(np.complex64))
 zs = tf.Variable(xs)
 ns = tf.Variable(tf.zeros_like(xs, tf.float32))
 tf.global_variables_initializer().run()
-
-
 zs_ = tf.math.cos(zs)*tf.math.sin(zs) + xs
 not_diverged = tf.abs(zs_) < 10
 step = tf.group( zs.assign(zs_), ns.assign_add(tf.cast(not_diverged, tf.float32)) )
 
 for i in range(200):
   step.run()
-  
- 
 
 fig = plt.figure(figsize=(20,20))
 
@@ -222,8 +199,4 @@ def processFractal(a):
 plt.imshow(processFractal(ns.eval()))
 plt.tight_layout(pad=0)
 plt.show()
-
 sess.close()
-
-
-
